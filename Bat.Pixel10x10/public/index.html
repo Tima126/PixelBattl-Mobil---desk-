@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel Art</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="styleSwitcher.js" defer></script>
+</head>
+<body>
+  <main>
+    <div class="canvas-container">
+      <canvas id="canvas" width="800" height="600" aria-label="Pixel Art Canvas"></canvas>
+    </div>
+    <div class="controls">
+      <input type="color" id="colorPicker">
+      <button id="clearButton">Clear Canvas</button>
+    </div>
+    <div id="timer">30</div>
+    <div id="coordinates">X: 0, Y: 0</div>
+    <div class="zoom-controls">
+      <button id="zoomInButton">+</button>
+      <button id="zoomOutButton">-</button>
+    </div>
+    <div class="mode-controls">
+      <button id="drawButton">Рисовать</button>
+      <button id="moveButton">Передвигать</button>
+  </div>
+  </main>
+  <script src="Pain.js" defer></script>
+  <script src="PainMobile.js" defer></script>
+</body>
+</html>
