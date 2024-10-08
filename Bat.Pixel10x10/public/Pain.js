@@ -75,10 +75,6 @@ submitBtn.onclick = function() {
 
 
 
-
-
-
-
     let isDragging = false;
     let startX, startY;
     let offsetX = 0, offsetY = 0;
