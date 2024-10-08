@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const zoomInButton = document.getElementById('zoomInButton');
     const zoomOutButton = document.getElementById('zoomOutButton');
   
-    const socket = new WebSocket('ws://192.168.1.7:3000'); // Замените localhost на IP-адрес сервера
+    const socket = new WebSocket('ws://192.168.103.85:3000'); // Замените localhost на IP-адрес сервера
   
     const pixelSize = 10; // Размер пикселя
     const drawCooldown = 30000; // 30 секунд в миллисекундах
@@ -19,6 +19,66 @@ document.addEventListener('DOMContentLoaded', () => {
     bufferCanvas.width = canvas.width;
     bufferCanvas.height = canvas.height;
   
+
+// Получаем элементы модального окна
+const modal = document.getElementById('modal');
+const closeBtn = document.getElementsByClassName('close')[0];
+const submitBtn = document.getElementById('submitName');
+const usernameInput = document.getElementById('username');
+
+// Открываем модальное окно при загрузке страницы
+modal.style.display = 'block';
+
+// Закрываем модальное окно при нажатии на кнопку закрытия
+closeBtn.onclick = function() {
+    modal.style.display = 'none';
+}
+
+// Закрываем модальное окно при клике вне его
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Отправляем данные на сервер при нажатии на кнопку "Отправить"
+submitBtn.onclick = function() {
+    const username = usernameInput.value;
+    if (username.trim() === '') {
+        alert('Пожалуйста, введите ваше имя.');
+        return;
+    }
+
+    // Отправка данных на сервер (пример с использованием fetch)
+    fetch('/submit-username', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: username }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Успех:', data);
+        modal.style.display = 'none'; // Закрываем модальное окно после отправки
+    })
+    .catch((error) => {
+        console.error('Ошибка:', error);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
     let isDragging = false;
     let startX, startY;
     let offsetX = 0, offsetY = 0;
